@@ -1,0 +1,104 @@
+.me-page {
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-family: system-ui, sans-serif;
+  }
+  
+  .me-header {
+    margin-bottom: 16px;
+  }
+  
+  .me-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .me-subtitle {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #94a3b8;
+  }
+  
+  .me-card {
+    display: flex;
+    gap: 12px;
+    background: #020617;
+    padding: 16px;
+    border-radius: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .me-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  .me-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .me-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .me-headline {
+    margin: 0;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+  
+  .me-company,
+  .me-location {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  
+  .me-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  
+  .me-tag {
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #111827;
+    font-size: 11px;
+  }
+  
+  .me-bio-section {
+    background: #020617;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .me-bio-section h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .me-bio {
+    margin: 0;
+    font-size: 13px;
+    color: #e5e7eb;
+  }
+  

@@ -1,0 +1,201 @@
+/* src/pages/Network.css */
+
+.network {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    background: #0f172a;
+    color: #e5e7eb;
+    font-family: system-ui, sans-serif;
+  }
+  
+  /* HEADER */
+  
+  .network-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 16px;
+  }
+  
+  .network-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .network-subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: 4px;
+  }
+  
+  .network-right-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  
+  /* profile button that links to /me */
+  .go-me-btn {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #1d4ed8;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  /* SEARCH */
+  
+  .network-search input {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid #1e293b;
+    background: #020617;
+    color: #e2e8f0;
+    min-width: 260px;
+  }
+  
+  /* VIEW TOGGLE */
+  
+  .view-toggle {
+    display: inline-flex;
+    background: #020617;
+    border-radius: 999px;
+    padding: 2px;
+    border: 1px solid #1e293b;
+  }
+  
+  .view-btn {
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  
+  .view-btn.active {
+    background: #1d4ed8;
+    color: #f9fafb;
+  }
+  
+  /* MAIN LAYOUT */
+  
+  .network-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+  
+  .network-main {
+    background: #020617;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* GRAPH */
+  
+  .network-graph {
+    flex: 1;
+    background: #020617;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .network-graph-canvas {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* LIST VIEW */
+  
+  .network-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .section-title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .node-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .node-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #020617;
+    border: 1px solid #1e293b;
+    cursor: pointer;
+    min-width: 180px;
+    transition: 0.15s ease;
+  }
+  
+  .node-card.selected {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.15);
+  }
+  
+  .node-initials {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  .node-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .node-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .node-headline {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  
+  .node-company {
+    font-size: 11px;
+    color: #64748b;
+  }
+  
+  /* PROFILE PANEL */
+  
+  .network-profile-panel {
+    background: #020617;
+    padding: 12px;
+    border-radius: 12px;
+    overflow-y: auto;
+  }
+  
