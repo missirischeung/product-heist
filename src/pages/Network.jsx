@@ -233,7 +233,7 @@ export default function Network() {
   </div>
 
   <div className="network-right-controls">
-    <Link to="/me" className="network-me-link">Me</Link>
+    <Link to="/me" className="network-me-link">My Profile</Link>
 
     <div className="network-search">
       <input
