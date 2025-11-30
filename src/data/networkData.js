@@ -6,26 +6,26 @@
 
 export const ME = {
     id: "me",
-    name: "You (Main User)",
-    headline: "Founder @ Stealth Startup",
-    company: "Stealth",
+    name: "Iris Cheung",
+    headline: "Prev PM Intern @ HP",
+    company: "University of British Columbia",
     location: "Vancouver, BC",
     tags: ["Founder", "BCS", "UBC", "Builder"],
   
     companyDetails: {
-      name: "Stealth",
-      size: "1–10 employees",
+      name: "University of British Columbia",
+      size: "70 000 Students",
       logo: "/company-logo.png",
     },
     industry: "Software / AI",
     education: "UBC — BCS Program",
+    connections: 359,
     patents: [
-      { title: "Graph-Based Social Discovery Engine", date: "2024-08-12" },
-      { title: "Adaptive Embedding Compression Model", date: "2025-02-01" },
+      { title: "Kawaiido", date: "2024-08-23" },
     ],
     funding: [
-      { round: "Pre-Seed", date: "2024-11-03" },
-      { round: "Angel", date: "2025-04-22" },
+      { round: "BCSSA", date: "2025-01-01" },
+      { round: "BCS Snack Share", date: "2025-09-01" },
     ],
     bio: "Building products, mapping networks, and connecting ambitious people.",
   };

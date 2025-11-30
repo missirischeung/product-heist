@@ -1,5 +1,8 @@
+/* ----------------------------------------------------------
+   ROOT THEME & PAGE CONTAINER
+---------------------------------------------------------- */
 .me-page {
-    --bg-root: #01030a;                     
+    --bg-root: #01030a;
     --bg-panel: rgba(2, 10, 25, 0.7);
     --bg-card: #020617;
     --border-soft: #0a1222;
@@ -9,7 +12,6 @@
     --neon-strong: #60a5fa;
     --neon-glow: #1e40af;
   
-    /* 🔥 NEW vertical neon gradient (TOP ➝ DOWN) */
     background:
       linear-gradient(
         to bottom,
@@ -27,21 +29,22 @@
       #01030a;
   
     background-blend-mode: screen, overlay, normal;
-  
     color: var(--text-main);
+  
     padding: 40px 24px;
     max-width: 900px;
     margin: 0 auto;
     box-sizing: border-box;
     font-family: system-ui, sans-serif;
+  
     height: 100vh;
     overflow-y: auto;
     backdrop-filter: blur(10px);
   }
   
-  
-  /* -------------------- HEADER -------------------- */
-  
+  /* ----------------------------------------------------------
+     HEADER
+  ---------------------------------------------------------- */
   .me-title {
     font-size: 32px;
     font-weight: 700;
@@ -57,18 +60,20 @@
     margin: 0 0 24px;
   }
   
-  /* -------------------- TOP CARD -------------------- */
-  
+  /* ----------------------------------------------------------
+     TOP CARD
+  ---------------------------------------------------------- */
   .me-card {
     display: flex;
-    gap: 16px;
+    justify-content: space-between;
     align-items: center;
   
     background: linear-gradient(
-        135deg,
-        rgba(4, 12, 30, 0.8),
-        rgba(10, 15, 40, 0.8)
-      );
+      135deg,
+      rgba(4, 12, 30, 0.8),
+      rgba(10, 15, 40, 0.8)
+    );
+  
     padding: 22px;
     border-radius: 18px;
     margin-bottom: 24px;
@@ -79,32 +84,47 @@
       inset 0 0 8px rgba(59, 130, 246, 0.15);
   }
   
+  .me-card-left {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .me-card-right .btn {
+    white-space: nowrap;
+    margin-left: 20px;
+  }
+  
   .me-avatar {
     width: 64px;
     height: 64px;
     border-radius: 9999px;
+  
     background: #020617;
     display: flex;
     align-items: center;
     justify-content: center;
+  
     font-size: 22px;
     font-weight: 700;
     color: #dce7ff;
+  
     border: 1px solid #1e3a8a;
     box-shadow:
       0 0 12px rgba(59, 130, 246, 0.5),
       inset 0 0 6px rgba(59, 130, 246, 0.25);
   }
   
-  .me-main .me-name {
+  .me-name {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
     color: #eaf0ff;
   }
   
-  /* -------------------- TAGS -------------------- */
-  
+  /* ----------------------------------------------------------
+     TAGS
+  ---------------------------------------------------------- */
   .me-tags {
     display: flex;
     flex-wrap: wrap;
@@ -114,16 +134,19 @@
   .me-tag {
     padding: 4px 12px;
     font-size: 11px;
+  
     background: rgba(3, 10, 35, 0.6);
     border-radius: 999px;
     border: 1px solid rgba(59, 130, 246, 0.35);
     color: #dbeafe;
+  
     backdrop-filter: blur(4px);
     box-shadow: 0 0 8px rgba(59, 130, 246, 0.35);
   }
   
-  /* -------------------- 2x2 GRID -------------------- */
-  
+  /* ----------------------------------------------------------
+     2×2 GRID
+  ---------------------------------------------------------- */
   .me-info-grid {
     margin-top: 16px;
     display: grid;
@@ -136,25 +159,22 @@
     background: rgba(4, 12, 25, 0.6);
     padding: 18px;
     border-radius: 16px;
-    font-size: 14px;
   
     border: 1px solid rgba(59, 130, 246, 0.25);
     box-shadow:
       0 0 22px rgba(59, 130, 246, 0.08),
       inset 0 0 10px rgba(59, 130, 246, 0.1);
+  
+    font-size: 14px;
   }
   
   .me-info-box h3 {
     font-size: 12px;
     color: #93c5fd;
     margin: 0 0 6px;
+  
     text-transform: uppercase;
     letter-spacing: 0.1em;
-  }
-  
-  .me-info-box p {
-    margin: 0;
-    color: #eaf2ff;
   }
   
   .me-company-box {
@@ -167,19 +187,17 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
+  
     object-fit: cover;
     background: #020617;
+  
     border: 1px solid rgba(59, 130, 246, 0.35);
     box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
   }
   
-  .me-company-size {
-    font-size: 12px;
-    color: #9ca3af;
-  }
-  
-  /* -------------------- LONG BOXES -------------------- */
-  
+  /* ----------------------------------------------------------
+     TWO COLUMN SECTIONS
+  ---------------------------------------------------------- */
   .me-two-cols {
     margin-top: 24px;
     display: grid;
@@ -198,17 +216,16 @@
       inset 0 0 10px rgba(59, 130, 246, 0.1);
   }
   
-  .me-long-box h3 {
-    margin: 0 0 8px;
-    color: #93c5fd;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .me-long-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   
   .me-long-box li {
     display: flex;
     justify-content: space-between;
+  
     padding: 8px 0;
     border-bottom: 1px solid rgba(59, 130, 246, 0.18);
   }
@@ -223,31 +240,18 @@
     color: var(--text-muted);
   }
   
-  /* -------------------- SCROLLBAR -------------------- */
-  
-  .me-page::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .me-page::-webkit-scrollbar-track {
-    background: #01030a;
-  }
-  
-  .me-page::-webkit-scrollbar-thumb {
-    background: linear-gradient(#1e40af, #3b82f6);
-    border-radius: 999px;
-  }
-  
-  /* -------------------- RESPONSIVE -------------------- */
+  /* ----------------------------------------------------------
+     RESPONSIVE
+  ---------------------------------------------------------- */
   @media (max-width: 700px) {
-    .me-info-grid,
-    .me-two-cols {
-      grid-template-columns: 1fr;
-    }
-  
     .me-card {
       flex-direction: column;
       align-items: flex-start;
+    }
+  
+    .me-info-grid,
+    .me-two-cols {
+      grid-template-columns: 1fr;
     }
   }
   

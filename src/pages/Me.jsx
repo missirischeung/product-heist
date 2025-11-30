@@ -1,4 +1,5 @@
 import "./Me.css";
+import Button from "../components/Button"; 
 import { ME } from "../data/networkData";
 
 export default function Me() {
@@ -21,32 +22,43 @@ export default function Me() {
 
       {/* -------- TOP CARD -------- */}
       <section className="me-card">
-        <div className="me-avatar">
-          {me.name
-            .replace(/[()]/g, "")
-            .split(" ")
-            .map((p) => p[0])
-            .join("")
-            .toUpperCase()
-            .slice(0, 2)}
+
+        {/* LEFT SIDE (avatar + info) */}
+        <div className="me-card-left">
+          <div className="me-avatar">
+            {me.name
+              .replace(/[()]/g, "")
+              .split(" ")
+              .map((p) => p[0])
+              .join("")
+              .toUpperCase()
+              .slice(0, 2)}
+          </div>
+
+          <div className="me-main">
+            <h2 className="me-name">{me.name}</h2>
+            <p className="me-headline">{me.headline}</p>
+            <p className="me-location">{me.location}</p>
+
+            <div className="me-tags">
+              {me.tags?.map((tag) => (
+                <span key={tag} className="me-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="me-main">
-          <h2 className="me-name">{me.name}</h2>
-          <p className="me-headline">{me.headline}</p>
-          <p className="me-location">{me.location}</p>
-
-          <div className="me-tags">
-            {me.tags?.map((tag) => (
-              <span key={tag} className="me-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
+        {/* RIGHT SIDE (LinkedIn button) */}
+        <div className="me-card-right">
+          <Button onClick={() => window.open(me.linkedin||"https://www.linkedin.com/in/icheung", "https://www.linkedin.com/")}>
+            LinkedIn
+          </Button>
         </div>
       </section>
 
-      {/* -------- INFO GRID -------- */}
+      {/* -------- 2x2 GRID (Name, Company, Industry, Education) -------- */}
       <section className="me-info-grid">
         <div className="me-info-box">
           <h3>Name</h3>
@@ -84,7 +96,7 @@ export default function Me() {
 
         <div className="me-long-box">
           <h3>Connections</h3>
-          <p className="me-connections">128 Connections</p>
+          <p className="me-connections">359 Connections</p>
         </div>
       </section>
 
@@ -117,3 +129,4 @@ export default function Me() {
     </div>
   );
 }
+
