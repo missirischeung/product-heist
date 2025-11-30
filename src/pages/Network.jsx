@@ -11,6 +11,16 @@ export default function Network() {
   const [searchQuery, setSearchQuery] = useState("");
   const [overlayPerson, setOverlayPerson] = useState(null);
 
+  // Map id -> person
+  const peopleById = useMemo(() => {
+    const map = new Map();
+    for (const p of PEOPLE) {
+      map.set(p.id, p);
+    }
+    return map;
+  }, []);
+
+  // LIST VIEW: filter by search text
   const filteredPeople = useMemo(() => {
     if (!searchQuery.trim()) return PEOPLE;
     const q = searchQuery.toLowerCase();
@@ -22,9 +32,10 @@ export default function Network() {
     );
   }, [searchQuery]);
 
-  const nodes = useMemo(
+  // GRAPH NODES: fixed data
+  const graphNodes = useMemo(
     () =>
-      filteredPeople.map((p) => ({
+      PEOPLE.map((p) => ({
         id: p.id,
         label: p.name,
         data: {
@@ -33,30 +44,28 @@ export default function Network() {
           tags: p.tags,
         },
       })),
-    [filteredPeople]
+    []
   );
 
-  const nodeIdSet = useMemo(() => new Set(nodes.map((n) => n.id)), [nodes]);
-
-  const edges = useMemo(
+  // GRAPH EDGES: fixed
+  const graphEdges = useMemo(
     () =>
-      RELATIONSHIPS.filter(
-        (r) => nodeIdSet.has(r.fromId) && nodeIdSet.has(r.toId)
-      ).map((r) => ({
+      RELATIONSHIPS.map((r) => ({
         id: r.id,
         source: r.fromId,
         target: r.toId,
         label: r.type,
       })),
-    [nodeIdSet]
+    []
   );
 
   const handleNodeClick = (node) => {
-    const person = PEOPLE.find((p) => p.id === node.id);
-    if (person) {
-      setSelectedPersonId(person.id);
-      setOverlayPerson(person);
-    }
+    const person = peopleById.get(node.id);
+    if (!person) return;
+
+    // update selected + overlay
+    setSelectedPersonId(person.id);
+    setOverlayPerson(person);
   };
 
   const handleCardClose = () => setOverlayPerson(null);
@@ -67,7 +76,8 @@ export default function Network() {
         <div>
           <h1 className="network-title">Network Map</h1>
           <p className="network-subtitle">
-            Explore your connections in full-screen graph or list view.
+            Click any node to zoom into their neighborhood and see 1st–3rd
+            degree connections.
           </p>
         </div>
 
@@ -90,11 +100,18 @@ export default function Network() {
           <div className="network-graph-full">
             <GraphCanvas
               className="network-graph-canvas"
-              nodes={nodes}
-              edges={edges}
+              nodes={graphNodes}
+              edges={graphEdges}
               layoutType="forceDirected2d"
               theme={darkTheme}
               labelType="all"
+              cameraMode="pan"
+              animated={false} // <- stop layout re-animating
+              selections={[selectedPersonId]} // <- tell reagraph which node is selected
+              sizingType="default"
+              defaultNodeSize={7}
+              minNodeSize={5}
+              maxNodeSize={16}
               onNodeClick={handleNodeClick}
             />
 
@@ -133,6 +150,7 @@ export default function Network() {
                     onClick={() => {
                       setSelectedPersonId(person.id);
                       setOverlayPerson(person);
+                      // No zoom here since we're in list view
                     }}
                   >
                     <div className="node-initials">
@@ -146,7 +164,9 @@ export default function Network() {
 
                     <div className="node-info">
                       <div className="node-name">{person.name}</div>
-                      <div className="node-headline">{person.headline}</div>
+                      <div className="node-headline">
+                        {person.headline}
+                      </div>
                       {person.company && (
                         <div className="node-company">{person.company}</div>
                       )}

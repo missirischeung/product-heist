@@ -1,27 +1,13 @@
 import "./Me.css";
+import { ME } from "../data/networkData";
 
 export default function Me() {
-  const me = {
-    name: "You (Main User)",
-    company: {
-      name: "Stealth",
-      size: "1–10 employees",
-      logo: "/company-logo.png",
-    },
-    industry: "Software / AI",
-    education: "UBC — BCS Program",
-    patents: [
-      { title: "Graph-Based Social Discovery Engine", date: "2024-08-12" },
-      { title: "Adaptive Embedding Compression Model", date: "2025-02-01" },
-    ],
-    funding: [
-      { round: "Pre-Seed", date: "2024-11-03" },
-      { round: "Angel", date: "2025-04-22" },
-    ],
-    bio: "Building products, mapping networks, and connecting ambitious people.",
-    tags: ["Founder", "BCS", "UBC", "Builder"],
-    location: "Vancouver, BC",
-    headline: "Founder @ Stealth Startup",
+  const me = ME;
+
+  const company = me.companyDetails || {
+    name: me.company,
+    size: "",
+    logo: "/company-logo.png",
   };
 
   return (
@@ -51,7 +37,7 @@ export default function Me() {
           <p className="me-location">{me.location}</p>
 
           <div className="me-tags">
-            {me.tags.map((tag) => (
+            {me.tags?.map((tag) => (
               <span key={tag} className="me-tag">
                 {tag}
               </span>
@@ -70,10 +56,10 @@ export default function Me() {
         <div className="me-info-box">
           <h3>Company</h3>
           <div className="me-company-box">
-            <img src={me.company.logo} alt="logo" className="me-company-logo" />
+            <img src={company.logo} alt="logo" className="me-company-logo" />
             <div>
-              <p>{me.company.name}</p>
-              <span className="me-company-size">{me.company.size}</span>
+              <p>{company.name}</p>
+              <span className="me-company-size">{company.size}</span>
             </div>
           </div>
         </div>
@@ -89,10 +75,10 @@ export default function Me() {
         </div>
       </section>
 
-    {/* -------- ROLE + CONNECTIONS -------- */}
+      {/* -------- ROLE + CONNECTIONS -------- */}
       <section className="me-two-cols">
         <div className="me-long-box">
-          <h3>Role </h3>
+          <h3>Role</h3>
           <p className="me-role">{me.headline}</p>
         </div>
 
@@ -107,7 +93,7 @@ export default function Me() {
         <div className="me-long-box">
           <h3>Patents</h3>
           <ul>
-            {me.patents.map((p, i) => (
+            {me.patents?.map((p, i) => (
               <li key={i}>
                 <strong>{p.title}</strong>
                 <span>{p.date}</span>
@@ -119,7 +105,7 @@ export default function Me() {
         <div className="me-long-box">
           <h3>Funding</h3>
           <ul>
-            {me.funding.map((f, i) => (
+            {me.funding?.map((f, i) => (
               <li key={i}>
                 <strong>{f.round}</strong>
                 <span>{f.date}</span>
