@@ -1,5 +1,5 @@
 // src/App.jsx
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Network from "./pages/Network.jsx";
 import Me from "./pages/Me.jsx";
 import "./App.css";
@@ -8,17 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="app-root">
-        <header className="app-nav">
-          <Link to="/" className="app-logo">
-            VC Map
-          </Link>
-
-          <div className="app-tabs">
-            <Link to="/" className="app-tab">Network</Link>
-            <Link to="/me" className="app-tab">Me</Link>
-          </div>
-        </header>
-
+        {/* No global header/nav bar anymore */}
         <main className="app-main">
           <Routes>
             <Route path="/" element={<Network />} />

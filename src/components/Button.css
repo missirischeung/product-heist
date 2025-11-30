@@ -1,7 +1,7 @@
 /* Base button */
 .btn {
-    padding: 12px 20px;
-    border-radius: 9999px; /* pill shape */
+    padding: 12px 22px;
+    border-radius: 9999px; 
     border: none;
     cursor: pointer;
     font-size: 0.95rem;
@@ -13,31 +13,48 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
   }
   
-  /* -------------------- LINKEDIN BUTTON STYLE -------------------- */
+  /* Icon wrapper */
+  .btn-icon-wrap {
+    display: flex;
+  }
+  
+  .btn-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* -------------------- LINKEDIN BUTTON (GLOW) -------------------- */
   .btn--linkedin {
-    background: #1f2937;  /* dark blue-gray to match your theme */
-    color: #e5e7eb;       /* light gray text */
-    border: 1px solid rgba(59, 130, 246, 0.4);  /* soft blue border */
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.25); /* subtle blue glow */
+    background: radial-gradient(circle at 30% 0%, #0a66c2, #004182);
+    border: 1px solid rgba(10, 102, 194, 0.9);
+    color: #ffffff;
+    box-shadow:
+      0 0 16px rgba(14, 118, 230, 0.55),
+      0 0 0 1px rgba(10, 102, 194, 0.45) inset;
   }
   
   .btn--linkedin:hover {
-    background: #111827; /* darker on hover */
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.45); /* stronger glow */
     transform: translateY(-1px);
+    box-shadow:
+      0 0 24px rgba(14, 118, 230, 0.85),
+      0 0 0 1px rgba(10, 102, 194, 0.9) inset;
   }
   
   .btn--linkedin:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+    transform: translateY(1px);
+    box-shadow:
+      0 0 14px rgba(14, 118, 230, 0.5),
+      0 0 0 1px rgba(0, 60, 122, 0.9) inset;
   }
   
   /* -------------------- DISABLED -------------------- */
   .btn--disabled,
   .btn:disabled {
-    background-color: #374151 !important; /* gray-700 */
+    background-color: #374151 !important;
     color: #9ca3af !important;
     border: none !important;
     box-shadow: none !important;
