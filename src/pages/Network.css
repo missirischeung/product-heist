@@ -1,11 +1,41 @@
-/* MAIN LAYOUT */
+/* ROOT / PAGE */
 .network {
+    --bg-root: #01030a;
+    --bg-panel: rgba(2, 10, 25, 0.7);
+    --bg-card: #020617;
+  
+    --border-soft: #0e1628;
+    --border-strong: #1d4ed8;
+  
+    --text-main: #e7ecff;
+    --text-muted: #8fa0c7;
+  
+    --neon: #3b82f6;
+    --neon-strong: #60a5fa;
+  
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(59, 130, 246, 0.25) 0%,
+        rgba(15, 23, 42, 0.55) 25%,
+        rgba(5, 12, 30, 0.8) 55%,
+        #01030a 100%
+      ),
+      radial-gradient(
+        ellipse at 50% -50%,
+        rgba(59, 130, 246, 0.35) 0%,
+        rgba(59, 130, 246, 0.08) 40%,
+        transparent 70%
+      ),
+      #01030a;
+  
+    background-blend-mode: screen, overlay, normal;
+  
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 16px;
-    background: #0f172a;
-    color: #e5e7eb;
+    color: var(--text-main);
     font-family: system-ui, sans-serif;
     box-sizing: border-box;
   }
@@ -22,11 +52,14 @@
     font-size: 24px;
     font-weight: 600;
     margin: 0;
+    background: linear-gradient(180deg, #93c5fd, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .network-subtitle {
     font-size: 14px;
-    color: #94a3b8;
+    color: var(--text-muted);
     margin-top: 4px;
   }
   
@@ -34,13 +67,28 @@
   .network-search input {
     padding: 8px 12px;
     border-radius: 999px;
-    border: 1px solid #1e293b;
-    background: #020617;
+    border: 1px solid var(--border-soft);
+    background: #01030a;
     color: #e2e8f0;
     min-width: 260px;
+    box-shadow:
+      0 0 0 1px rgba(15, 23, 42, 0.6),
+      0 0 12px rgba(59, 130, 246, 0.15);
+    transition: 0.15s ease;
   }
   
-  /* FULL SCREEN MODES */
+  .network-search input::placeholder {
+    color: #64748b;
+  }
+  
+  .network-search input:focus {
+    border-color: var(--neon);
+    box-shadow:
+      0 0 0 1px rgba(59, 130, 246, 0.6),
+      0 0 14px rgba(59, 130, 246, 0.3);
+  }
+  
+  /* MAIN LAYOUT */
   .network-main-full {
     flex: 1;
     display: flex;
@@ -48,30 +96,64 @@
     min-height: 0;
   }
   
-  /* GRAPH FULL */
+  /* GRAPH PANEL – DARK SPACE BLUE */
   .network-graph-full {
     flex: 1;
-    background: #020617;
-    border-radius: 12px;
-    padding: 10px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    padding: 10px;
+  
+    border: 1px solid var(--border-soft);
+    background: radial-gradient(
+      circle at 50% 30%,
+      #0b1120 0%,
+      #020617 55%,
+      #020617 100%
+    );
+    box-shadow:
+      0 0 30px rgba(0, 0, 0, 0.7),
+      inset 0 0 24px rgba(15, 23, 42, 0.9);
   }
   
+  /* central glow */
+  .network-graph-full::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(59, 130, 246, 0.18),
+      transparent 72%
+    );
+    z-index: 0;
+  }
+  
+  /* canvas itself — draw stars above the glow */
   .network-graph-canvas {
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
   }
   
-  /* LIST FULL (two columns) */
+  /* LIST PANEL */
   .network-list-full {
     flex: 1;
-    background: #020617;
-    border-radius: 12px;
+    background: rgba(5, 12, 30, 0.75);
+    border-radius: 14px;
     padding: 10px;
     display: flex;
     gap: 12px;
     overflow: hidden;
+  
+    border: 1px solid var(--border-soft);
+    box-shadow:
+      0 0 30px rgba(0, 0, 0, 0.7),
+      inset 0 0 18px rgba(15, 23, 42, 0.9);
   }
   
   .list-main {
@@ -86,7 +168,7 @@
     margin-bottom: 8px;
   }
   
-  /* LIST GRID */
+  /* NODE CARDS */
   .node-grid {
     display: flex;
     flex-wrap: wrap;
@@ -98,46 +180,64 @@
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    background: #020617;
-    border: 1px solid #1e293b;
+    background: #01030a;
+    border: 1px solid var(--border-soft);
     border-radius: 999px;
     cursor: pointer;
     transition: 0.15s ease;
     min-width: 180px;
+    box-shadow:
+      0 0 14px rgba(15, 23, 42, 0.8),
+      inset 0 0 8px rgba(15, 23, 42, 0.9);
+  }
+  
+  .node-card:hover {
+    border-color: var(--neon);
+    background: rgba(8, 20, 50, 0.9);
+    box-shadow:
+      0 0 16px rgba(59, 130, 246, 0.35),
+      inset 0 0 10px rgba(15, 23, 42, 1);
   }
   
   .node-card.selected {
-    border-color: #3b82f6;
-    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--neon);
+    background: rgba(59, 130, 246, 0.24);
+    box-shadow:
+      0 0 20px rgba(59, 130, 246, 0.4),
+      inset 0 0 12px rgba(15, 23, 42, 1);
   }
   
   .node-initials {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: #1e293b;
+    background: #020617;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 600;
+    color: #e5e7eb;
+    border: 1px solid #1f2937;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
   }
   
   .node-name {
     font-size: 14px;
     font-weight: 600;
+    color: #f9fafb;
   }
   
   .node-headline {
     font-size: 11px;
-    color: #94a3b8;
+    color: var(--text-muted);
   }
   
   .node-company {
     font-size: 11px;
-    color: #64748b;
+    color: #7c8aa8;
   }
   
-  /* PROFILE OVERLAY (graph view) */
+  /* PROFILE OVERLAY */
   .profile-overlay {
     position: absolute;
     inset: 0;
@@ -146,30 +246,36 @@
     pointer-events: none;
   }
   
-  /* Shared card styling (used in graph overlay AND list side panel) */
   .profile-card {
     width: 320px;
     max-width: 90%;
-    background: #020617;
-    border-left: 1px solid #1f2937;
+    background: #01030a;
+    border-left: 1px solid var(--border-soft);
     padding: 16px;
-    border-radius: 12px;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
-    overflow-y: auto;
+    border-radius: 14px;
+    box-shadow:
+      -10px 0 40px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.15);
     pointer-events: auto;
+    overflow-y: auto;
   }
   
   .profile-card-close {
-    align-self: flex-end;
     background: transparent;
     border: none;
-    color: #94a3b8;
+    color: var(--text-muted);
     font-size: 18px;
     cursor: pointer;
     margin-bottom: 4px;
+    transition: 0.15s ease;
   }
   
-  /* LIST VIEW side panel (so list doesn't sit underneath) */
+  .profile-card-close:hover {
+    color: #f9fafb;
+    transform: scale(1.05);
+  }
+  
+  /* LIST SIDE PANEL */
   .list-profile-wrapper {
     width: 340px;
     max-width: 40%;
@@ -177,7 +283,7 @@
     display: flex;
   }
   
-  /* BOTTOM TOGGLE BAR */
+  /* BOTTOM TOGGLE */
   .network-bottom-toggle {
     margin-top: 12px;
     display: flex;
@@ -187,18 +293,62 @@
   
   .bottom-toggle-btn {
     border-radius: 999px;
-    border: 1px solid #1e293b;
+    border: 1px solid var(--border-soft);
     padding: 8px 18px;
-    background: #020617;
+    background: #01030a;
     color: #9ca3af;
     cursor: pointer;
     transition: 0.15s ease;
     font-size: 13px;
+    min-width: 110px;
+    text-align: center;
+    box-shadow:
+      0 0 12px rgba(15, 23, 42, 0.9),
+      inset 0 0 6px rgba(15, 23, 42, 1);
+  }
+  
+  .bottom-toggle-btn:hover {
+    border-color: var(--neon);
+    color: #e5e7eb;
+    box-shadow:
+      0 0 16px rgba(59, 130, 246, 0.35),
+      inset 0 0 8px rgba(15, 23, 42, 1);
   }
   
   .bottom-toggle-btn.active {
-    background: #1d4ed8;
+    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
     color: white;
-    border-color: #1d4ed8;
+    border-color: transparent;
+    box-shadow:
+      0 0 22px rgba(59, 130, 246, 0.5),
+      inset 0 0 12px rgba(15, 23, 42, 1);
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .network-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .network-search input {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .network-list-full {
+      flex-direction: column;
+    }
+  
+    .list-profile-wrapper {
+      max-width: 100%;
+      width: 100%;
+    }
+  
+    .profile-card {
+      width: 100%;
+    }
   }
   

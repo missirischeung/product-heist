@@ -1,4 +1,4 @@
-// src/pages/Profile.jsx (or wherever you keep it)
+// src/pages/Profile.jsx
 import "./Profile.css";
 
 export default function Profile({ person }) {
@@ -14,8 +14,34 @@ export default function Profile({ person }) {
   const companyName =
     person.companyDetails?.name || person.company || "—";
   const companySize = person.companyDetails?.size || "";
-  const companyLogo =
-    person.companyDetails?.logo || null;
+  const companyLogo = person.companyDetails?.logo || null;
+
+  // 🔹 Tag → class mapping (for colours)
+  function getTagClass(tag) {
+    const t = tag.toLowerCase();
+
+    if (t.includes("investor") || t.includes("vc") || t.includes("angel"))
+      return "tag-investor";
+
+    if (
+      t.includes("funding") ||
+      t.includes("fund") ||
+      t.includes("raising") ||
+      t.includes("looking for funding") ||
+      t.includes("raising a round")
+    )
+      return "tag-raising";
+
+    if (
+      t.includes("founder") ||
+      t.includes("ceo") ||
+      t.includes("co-founder") ||
+      t.includes("operator")
+    )
+      return "tag-founder";
+
+    return "tag-default";
+  }
 
   return (
     <div className="profile">
@@ -55,7 +81,10 @@ export default function Profile({ person }) {
       {person.tags?.length > 0 && (
         <div className="profile-tags">
           {person.tags.map((tag) => (
-            <span key={tag} className="profile-tag">
+            <span
+              key={tag}
+              className={`profile-tag ${getTagClass(tag)}`}
+            >
               {tag}
             </span>
           ))}

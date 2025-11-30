@@ -32,7 +32,7 @@ export default function Network() {
     );
   }, [searchQuery]);
 
-  // GRAPH NODES: fixed data
+  // Base graph nodes (for both views)
   const graphNodes = useMemo(
     () =>
       PEOPLE.map((p) => ({
@@ -47,7 +47,7 @@ export default function Network() {
     []
   );
 
-  // GRAPH EDGES: fixed
+  // Base graph edges
   const graphEdges = useMemo(
     () =>
       RELATIONSHIPS.map((r) => ({
@@ -59,11 +59,111 @@ export default function Network() {
     []
   );
 
+  // 🔹 Compute "ego network" around selectedPersonId (1–2 hops out)
+  const egoNodeIds = useMemo(() => {
+    const maxDepth = 2; // 1 = direct only, 2 = 1st + 2nd degree
+    const visited = new Set();
+    const queue = [];
+
+    if (selectedPersonId) {
+      visited.add(selectedPersonId);
+      queue.push({ id: selectedPersonId, depth: 0 });
+    }
+
+    while (queue.length) {
+      const { id, depth } = queue.shift();
+      if (depth >= maxDepth) continue;
+
+      for (const rel of RELATIONSHIPS) {
+        if (rel.fromId === id || rel.toId === id) {
+          const otherId = rel.fromId === id ? rel.toId : rel.fromId;
+          if (!visited.has(otherId)) {
+            visited.add(otherId);
+            queue.push({ id: otherId, depth: depth + 1 });
+          }
+        }
+      }
+    }
+
+    return visited;
+  }, [selectedPersonId]);
+
+  // 🔹 Nodes actually rendered in the "orbit" (bigger center node)
+  const orbitNodes = useMemo(
+    () =>
+      graphNodes
+        .filter((n) => egoNodeIds.has(n.id))
+        .map((n) => ({
+          ...n,
+          size: n.id === selectedPersonId ? 18 : 8,
+        })),
+    [graphNodes, egoNodeIds, selectedPersonId]
+  );
+
+  // 🔹 Only keep edges fully inside that ego set
+  const orbitEdges = useMemo(
+    () =>
+      graphEdges.filter(
+        (e) => egoNodeIds.has(e.source) && egoNodeIds.has(e.target)
+      ),
+    [graphEdges, egoNodeIds]
+  );
+
+  // 🔹 Dark space theme: soft blue stars, white lines, orange active node
+ // ...imports etc stay the same
+
+// inside Network component, before return:
+const graphTheme = useMemo(
+    () => ({
+      ...darkTheme,
+      canvas: {
+        ...darkTheme.canvas,
+        background: "#020617", // deep navy
+        fog: "#020617",
+      },
+      node: {
+        ...darkTheme.node,
+        fill: "#7dd3fc",        // ⭐ soft blue stars
+        activeFill: "#f97316",  // ☀️ orange selected node
+        opacity: 1,
+        selectedOpacity: 1,
+        inactiveOpacity: 0.25,
+        label: {
+          ...darkTheme.node.label,
+          color: "#ffffff",     // white names
+          activeColor: "#ffffff",
+          stroke: "#020617",    // dark outline for contrast
+        },
+      },
+      ring: {
+        ...darkTheme.ring,
+        fill: "rgba(56, 189, 248, 0.22)",   // minty halo
+        activeFill: "rgba(56, 189, 248, 0.85)",
+      },
+      edge: {
+        ...darkTheme.edge,
+        fill: "#e5e7eb",        // white constellation lines
+        activeFill: "#ffffff",
+        opacity: 0.45,
+        selectedOpacity: 0.9,
+        inactiveOpacity: 0.12,
+        label: {
+          ...darkTheme.edge.label,
+          color: "#cbd5f5",
+          activeColor: "#ffffff",
+          stroke: "#020617",
+          fontSize: 10,
+        },
+      },
+    }),
+    []
+  );
+  
+
   const handleNodeClick = (node) => {
     const person = peopleById.get(node.id);
     if (!person) return;
 
-    // update selected + overlay
     setSelectedPersonId(person.id);
     setOverlayPerson(person);
   };
@@ -76,8 +176,7 @@ export default function Network() {
         <div>
           <h1 className="network-title">Network Map</h1>
           <p className="network-subtitle">
-            Click any node to zoom into their neighborhood and see 1st–3rd
-            degree connections.
+            Click any node to see their orbit — 1st–2nd degree connections around them.
           </p>
         </div>
 
@@ -99,21 +198,22 @@ export default function Network() {
         {viewMode === "graph" && (
           <div className="network-graph-full">
             <GraphCanvas
-              className="network-graph-canvas"
-              nodes={graphNodes}
-              edges={graphEdges}
-              layoutType="forceDirected2d"
-              theme={darkTheme}
-              labelType="all"
-              cameraMode="pan"
-              animated={false} // <- stop layout re-animating
-              selections={[selectedPersonId]} // <- tell reagraph which node is selected
-              sizingType="default"
-              defaultNodeSize={7}
-              minNodeSize={5}
-              maxNodeSize={16}
-              onNodeClick={handleNodeClick}
-            />
+  className="network-graph-canvas"
+  nodes={orbitNodes}
+  edges={orbitEdges}
+  layoutType="radialOut3d"
+  animated={true}
+  cameraMode="pan"
+  labelType="nodes"
+  sizingType="default"
+  defaultNodeSize={7}
+  minNodeSize={5}
+  maxNodeSize={20}
+  selections={[selectedPersonId]}
+  onNodeClick={handleNodeClick}
+  theme={graphTheme}
+/>
+
 
             {/* Overlay card ONLY for graph view */}
             {overlayPerson && (
@@ -150,7 +250,6 @@ export default function Network() {
                     onClick={() => {
                       setSelectedPersonId(person.id);
                       setOverlayPerson(person);
-                      // No zoom here since we're in list view
                     }}
                   >
                     <div className="node-initials">
@@ -168,7 +267,9 @@ export default function Network() {
                         {person.headline}
                       </div>
                       {person.company && (
-                        <div className="node-company">{person.company}</div>
+                        <div className="node-company">
+                          {person.company}
+                        </div>
                       )}
                     </div>
                   </button>
