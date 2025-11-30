@@ -15,7 +15,7 @@ export const ME = {
     companyDetails: {
       name: "University of British Columbia",
       size: "70 000 Students",
-      logo: "/company-logo.png",
+      logo: "/UBC.jpg",
     },
     industry: "Software / AI",
     education: "UBC — BCS Program",
@@ -52,7 +52,7 @@ export const ME = {
       companyDetails: {
         name: "Overdrive",
         size: "50–200 employees",
-        logo: "/logos/overdrive.png",
+        logo: "/OVERDRIVE.jpg",
       },
       industry: "Software",
       education: "UC Berkeley — Master’s of Information and Data Science",
@@ -73,7 +73,7 @@ export const ME = {
       companyDetails: {
         name: "Withe",
         size: "150 employees",
-        logo: "/logos/withe.png",
+        logo: "/WITHE.jpg",
       },
       industry: "Software",
       education:
@@ -95,7 +95,7 @@ export const ME = {
       companyDetails: {
         name: "CreatorCore",
         size: "350 employees",
-        logo: "/logos/creatorcore.png",
+        logo: "/CREATORCORE.jpg",
       },
       industry: "Media",
       education: "UBC — Bachelor's in Computer Science",
@@ -116,7 +116,7 @@ export const ME = {
       companyDetails: {
         name: "Visionary Vectors Consulting Inc.",
         size: "225 employees",
-        logo: "/logos/visionary-vectors.png",
+        logo: "VVC.jpg",
       },
       industry: "Consulting",
       education: "Saskatchewan Polytechnic — Accounting",
@@ -137,7 +137,7 @@ export const ME = {
       companyDetails: {
         name: "Workday",
         size: "225 employees",
-        logo: "/logos/workday.png",
+        logo: "/WORKDAY.jpg",
       },
       industry: "SaaS",
       education:
@@ -159,7 +159,7 @@ export const ME = {
       companyDetails: {
         name: "Telus",
         size: "300 employees",
-        logo: "/logos/telus.png",
+        logo: "/TELUS.jpg",
       },
       industry: "Telecommunications / AI",
       education:
@@ -181,7 +181,7 @@ export const ME = {
       companyDetails: {
         name: "Yelp",
         size: "125 employees",
-        logo: "/logos/yelp.png",
+        logo: "/YELP.jpg",
       },
       industry: "Media / Internet",
       education:
@@ -203,7 +203,7 @@ export const ME = {
       companyDetails: {
         name: "Elastic",
         size: "200 employees",
-        logo: "/logos/elastic.png",
+        logo: "/ELASTIC.jpg",
       },
       industry: "Software",
       education: "SFU — BASc Mechatronics",
@@ -224,7 +224,7 @@ export const ME = {
       companyDetails: {
         name: "Atlassian",
         size: "150 employees",
-        logo: "/logos/atlassian.png",
+        logo: "/ATLASSIAN.jpg",
       },
       industry: "Software",
       education:
@@ -250,7 +250,7 @@ export const ME = {
       companyDetails: {
         name: "DeepWave Labs",
         size: "500 employees",
-        logo: "/logos/deepwave-labs.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Artificial Intelligence",
       education: "MIT — PhD, Machine Learning",
@@ -272,7 +272,7 @@ export const ME = {
       companyDetails: {
         name: "CloudForge",
         size: "800 employees",
-        logo: "/logos/cloudforge.png",
+        logo: "MOUNTAIN.jpg",
       },
       industry: "Cloud Infrastructure",
       education: "University of São Paulo — Computer Engineering",
@@ -292,7 +292,7 @@ export const ME = {
       companyDetails: {
         name: "Blue Horizon Capital",
         size: "40 employees",
-        logo: "/logos/blue-horizon.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Venture Capital",
       education: "Harvard Business School — MBA",
@@ -314,7 +314,7 @@ export const ME = {
       companyDetails: {
         name: "Iterate.ai",
         size: "200 employees",
-        logo: "/logos/iterateai.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "AI / DevTools",
       education: "University of Waterloo — Software Engineering",
@@ -334,7 +334,7 @@ export const ME = {
       companyDetails: {
         name: "StrideHQ",
         size: "110 employees",
-        logo: "/logos/stridehq.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Consumer Tech / Fitness",
       education: "UCLA — BA Cognitive Science",
@@ -354,7 +354,7 @@ export const ME = {
       companyDetails: {
         name: "Tactile Robotics",
         size: "350 employees",
-        logo: "/logos/tactile-robotics.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Robotics / ML Infra",
       education: "Carnegie Mellon University — MS Robotics",
@@ -376,7 +376,7 @@ export const ME = {
       companyDetails: {
         name: "Lumina Analytics",
         size: "65 employees",
-        logo: "/logos/lumina.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Enterprise AI",
       education: "Rice University — BSc Computer Science",
@@ -399,7 +399,7 @@ export const ME = {
       companyDetails: {
         name: "Greenflare Energy",
         size: "450 employees",
-        logo: "/logos/greenflare.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Energy / Climate Tech",
       education: "University of Colorado — Computer Science",
@@ -419,7 +419,7 @@ export const ME = {
       companyDetails: {
         name: "Figma",
         size: "1000+ employees",
-        logo: "/logos/figma.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Design Tools",
       education: "Parsons School of Design — BFA",
@@ -439,7 +439,7 @@ export const ME = {
       companyDetails: {
         name: "CypherTech",
         size: "220 employees",
-        logo: "/logos/cyphertech.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Web3 / Cybersecurity",
       education: "University of Tokyo — MEng Computer Science",
@@ -459,7 +459,7 @@ export const ME = {
       companyDetails: {
         name: "Looped",
         size: "300 employees",
-        logo: "/logos/looped.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "SaaS / Productivity",
       education: "Northwestern University — Economics",
@@ -479,7 +479,7 @@ export const ME = {
       companyDetails: {
         name: "ShieldCore",
         size: "180 employees",
-        logo: "/logos/shieldcore.png",
+        logo: "/MOUNTAIN.jpg",
       },
       industry: "Cybersecurity",
       education: "NYU Abu Dhabi — Computer Science",
@@ -502,7 +502,7 @@ export const ME = {
     companyDetails: {
       name: "NeuroShift AI",
       size: "120 employees",
-      logo: "/logos/neuroshift.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "AI / Neuroscience",
     education: "Stanford — PhD Computational Neuroscience",
@@ -525,7 +525,7 @@ export const ME = {
     companyDetails: {
       name: "Apollo Metrics",
       size: "400 employees",
-      logo: "/logos/apollo.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Analytics / SaaS",
     education: "Cornell — MBA, Technology Management",
@@ -546,7 +546,7 @@ export const ME = {
     companyDetails: {
       name: "Firewatch",
       size: "600 employees",
-      logo: "/logos/firewatch.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Cybersecurity",
     education: "UT Austin — BS Computer Science",
@@ -567,7 +567,7 @@ export const ME = {
     companyDetails: {
       name: "Streamflow Systems",
       size: "220 employees",
-      logo: "/logos/streamflow.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Data Infrastructure",
     education: "University of Porto — MSc Distributed Systems",
@@ -588,7 +588,7 @@ export const ME = {
     companyDetails: {
       name: "Verde",
       size: "40 employees",
-      logo: "/logos/verde.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Climate Tech",
     education: "UC San Diego — BA Environmental Engineering",
@@ -611,7 +611,7 @@ export const ME = {
     companyDetails: {
       name: "Kinetica Labs",
       size: "280 employees",
-      logo: "/logos/kinetica.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Robotics / Automation",
     education: "Tokyo Institute of Technology — MSc Robotics",
@@ -632,7 +632,7 @@ export const ME = {
     companyDetails: {
       name: "InsightGrid",
       size: "180 employees",
-      logo: "/logos/insightgrid.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Enterprise Data / ML",
     education: "University of Toronto — MSc Computer Science",
@@ -653,7 +653,7 @@ export const ME = {
     companyDetails: {
       name: "Nimbus Cloud",
       size: "900 employees",
-      logo: "/logos/nimbus.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Cloud Computing",
     education: "Washington University — BA Economics",
@@ -674,7 +674,7 @@ export const ME = {
     companyDetails: {
       name: "FormWorks",
       size: "320 employees",
-      logo: "/logos/formworks.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Manufacturing / Automation",
     education: "TU Berlin — Industrial Engineering",
@@ -695,7 +695,7 @@ export const ME = {
     companyDetails: {
       name: "Fluxbyte",
       size: "15 employees",
-      logo: "/logos/fluxbyte.png",
+      logo: "/MOUNTAIN.jpg",
     },
     industry: "Developer Tools",
     education: "UIUC — BS Computer Engineering",
