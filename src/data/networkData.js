@@ -10,6 +10,14 @@ export const PEOPLE = [
       tags: ["Founder", "BCS", "UBC"],
     },
     {
+        id: "p0",
+        name: "Georgiy",
+        headline: "CEO @ Overview",
+        company: "Overview",
+        location: "Vancouver, BC",
+        tags: ["Founder"],
+      },
+    {
       id: "p1",
       name: "Alice Zhang",
       headline: "Angel Investor",

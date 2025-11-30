@@ -1,6 +1,5 @@
 // src/pages/Network.jsx
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
 import { GraphCanvas, darkTheme } from "reagraph";
 import "./Network.css";
 import Profile from "./Profile";
@@ -10,11 +9,7 @@ export default function Network() {
   const [viewMode, setViewMode] = useState("graph"); // "graph" | "list"
   const [selectedPersonId, setSelectedPersonId] = useState("me");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const selectedPerson = useMemo(
-    () => PEOPLE.find((p) => p.id === selectedPersonId) ?? PEOPLE[0],
-    [selectedPersonId]
-  );
+  const [overlayPerson, setOverlayPerson] = useState(null);
 
   const filteredPeople = useMemo(() => {
     if (!searchQuery.trim()) return PEOPLE;
@@ -57,8 +52,14 @@ export default function Network() {
   );
 
   const handleNodeClick = (node) => {
-    setSelectedPersonId(node.id);
+    const person = PEOPLE.find((p) => p.id === node.id);
+    if (person) {
+      setSelectedPersonId(person.id);
+      setOverlayPerson(person);
+    }
   };
+
+  const handleCardClose = () => setOverlayPerson(null);
 
   return (
     <div className="network">
@@ -66,30 +67,11 @@ export default function Network() {
         <div>
           <h1 className="network-title">Network Map</h1>
           <p className="network-subtitle">
-            Toggle between graph and list view. Click any person to see details.
+            Explore your connections in full-screen graph or list view.
           </p>
         </div>
 
         <div className="network-right-controls">
-          <Link to="/me">
-            <button className="go-me-btn">My Profile</button>
-          </Link>
-
-          <div className="view-toggle">
-            <button
-              className={viewMode === "graph" ? "view-btn active" : "view-btn"}
-              onClick={() => setViewMode("graph")}
-            >
-              Graph
-            </button>
-            <button
-              className={viewMode === "list" ? "view-btn active" : "view-btn"}
-              onClick={() => setViewMode("list")}
-            >
-              List
-            </button>
-          </div>
-
           <div className="network-search">
             <input
               type="text"
@@ -101,16 +83,11 @@ export default function Network() {
         </div>
       </header>
 
-      <div className="network-body">
-        <section className="network-main">
-          {/* GRAPH VIEW (always mounted) */}
-          <div
-            className={
-              viewMode === "graph"
-                ? "network-graph network-view-visible"
-                : "network-graph network-view-hidden"
-            }
-          >
+      {/* MAIN AREA */}
+      <div className="network-main-full">
+        {/* GRAPH VIEW */}
+        {viewMode === "graph" && (
+          <div className="network-graph-full">
             <GraphCanvas
               className="network-graph-canvas"
               nodes={nodes}
@@ -120,52 +97,104 @@ export default function Network() {
               labelType="all"
               onNodeClick={handleNodeClick}
             />
-          </div>
 
-          {/* LIST VIEW (always mounted) */}
-          <div
-            className={
-              viewMode === "list"
-                ? "network-list network-view-visible"
-                : "network-list network-view-hidden"
-            }
-          >
-            <h2 className="section-title">All Connections</h2>
-            <div className="node-grid">
-              {filteredPeople.map((person) => (
-                <button
-                  key={person.id}
-                  className={
-                    person.id === selectedPersonId
-                      ? "node-card selected"
-                      : "node-card"
-                  }
-                  onClick={() => setSelectedPersonId(person.id)}
-                >
-                  <div className="node-initials">
-                    {person.name
-                      .split(" ")
-                      .map((p) => p[0])
-                      .join("")
-                      .toUpperCase()
-                      .slice(0, 2)}
-                  </div>
-                  <div className="node-info">
-                    <div className="node-name">{person.name}</div>
-                    <div className="node-headline">{person.headline}</div>
-                    {person.company && (
-                      <div className="node-company">{person.company}</div>
-                    )}
-                  </div>
-                </button>
-              ))}
+            {/* Overlay card ONLY for graph view */}
+            {overlayPerson && (
+              <div className="profile-overlay">
+                <div className="profile-card">
+                  <button
+                    className="profile-card-close"
+                    onClick={handleCardClose}
+                  >
+                    ✕
+                  </button>
+                  <Profile person={overlayPerson} />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* LIST VIEW */}
+        {viewMode === "list" && (
+          <div className="network-list-full">
+            <div className="list-main">
+              <h2 className="section-title">All Connections</h2>
+
+              <div className="node-grid">
+                {filteredPeople.map((person) => (
+                  <button
+                    key={person.id}
+                    className={
+                      person.id === selectedPersonId
+                        ? "node-card selected"
+                        : "node-card"
+                    }
+                    onClick={() => {
+                      setSelectedPersonId(person.id);
+                      setOverlayPerson(person);
+                    }}
+                  >
+                    <div className="node-initials">
+                      {person.name
+                        .split(" ")
+                        .map((p) => p[0])
+                        .join("")
+                        .toUpperCase()
+                        .slice(0, 2)}
+                    </div>
+
+                    <div className="node-info">
+                      <div className="node-name">{person.name}</div>
+                      <div className="node-headline">{person.headline}</div>
+                      {person.company && (
+                        <div className="node-company">{person.company}</div>
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
 
-        <aside className="network-profile-panel">
-          <Profile person={selectedPerson} />
-        </aside>
+            {overlayPerson && (
+              <div className="list-profile-wrapper">
+                <div className="profile-card">
+                  <button
+                    className="profile-card-close"
+                    onClick={handleCardClose}
+                  >
+                    ✕
+                  </button>
+                  <Profile person={overlayPerson} />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* BOTTOM TOGGLE BAR */}
+      <div className="network-bottom-toggle">
+        <button
+          className={
+            viewMode === "graph"
+              ? "bottom-toggle-btn active"
+              : "bottom-toggle-btn"
+          }
+          onClick={() => setViewMode("graph")}
+        >
+          Graph View
+        </button>
+        <button
+          className={
+            viewMode === "list"
+              ? "bottom-toggle-btn active"
+              : "bottom-toggle-btn"
+          }
+          onClick={() => setViewMode("list")}
+        >
+          List View
+        </button>
       </div>
     </div>
   );
